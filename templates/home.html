@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DectoX – Crypto Risk Scanner</title>
+  <style>
+    body { background: #0d1117; color: white; font-family: sans-serif; padding: 20px; }
+    input { width: 100%; padding: 10px; border-radius: 10px; margin-bottom: 20px; }
+    .coin { background: #161b22; padding: 15px; margin-bottom: 15px; border-radius: 10px; }
+    .low { color: #00ff88; } .medium { color: #ffaa00; } .high { color: #ff4444; }
+    details { margin-top: 30px; background: #1e252f; padding: 20px; border-radius: 10px; }
+    .btn { padding: 10px 20px; background: #00ffc6; color: black; border: none; border-radius: 8px; cursor: pointer; }
+    .output-box { background: #12161c; padding: 10px; border-radius: 8px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<h2>🔍 DectoX – AI Crypto Scanner</h2>
+
+<input type="text" id="searchInput" onkeyup="filterCoins()" placeholder="Search crypto by name or symbol...">
+
+<div id="coinList">
+  {% for coin in coins %}
+  <div class="coin" data-name="{{ coin.name }}" data-symbol="{{ coin.symbol }}">
+    <h3>{{ coin.name }} ({{ coin.symbol }})</h3>
+    <p>Risk Level: <span class="{{ coin.risk_level|lower }}">{{ coin.risk_level }}</span> ({{ coin.risk }}%)</p>
+    <p>Price: {{ coin.price }}</p>
+    <p>Score: ⭐ {{ coin.score }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<details>
+  <summary><b>🧠 Smart Contract Scanner (Click to Expand)</b></summary>
+  <br>
+  <label>Enter Contract Address:</label>
+  <input type="text" id="contractInput" placeholder="e.g., 0x123...">
+  <button class="btn" onclick="scanContract()">🔍 Scan Contract</button>
+  
+  <div class="output-box" id="scanResult" style="display: none;">
+    <p>✅ Owner Control: <b>YES</b></p>
+    <p>🔄 Can Mint Tokens: <b>YES</b></p>
+    <p>❄️ Freeze Function Present: <b>NO</b></p>
+    <p>🚫 Blacklist Capability: <b>NO</b></p>
+    <p>🛡️ Audit Link: <b>No Audit Found</b></p>
+    <p>⚠️ Risk Level: <span style="color: red;"><b>HIGH</b></span></p>
+  </div>
+</details>
+
+<script>
+function filterCoins() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let coins = document.getElementsByClassName("coin");
+  for (let i = 0; i < coins.length; i++) {
+    let name = coins[i].getAttribute("data-name").toLowerCase();
+    let symbol = coins[i].getAttribute("data-symbol").toLowerCase();
+    coins[i].style.display = (name.includes(input) || symbol.includes(input)) ? "block" : "none";
+  }
+}
+
+function scanContract() {
+  document.getElementById("scanResult").style.display = "block";
+}
+</script>
+
+</body>
+</html>
+<!-- 🧠 Smart Contract Scanner (Collapsible) -->
+<div style="margin-top: 20px;">
+  <button onclick="toggleScanner()" style="width: 100%; background: #21262d; color: white; padding: 12px; border: none; border-radius: 8px; font-size: 16px;">
+    🧠 Smart Contract Scanner (Click to Expand)
+  </button>
+  
+  <div id="scannerSection" style="display: none; background: #161b22; padding: 15px; margin-top: 10px; border-radius: 8px;">
+    <input id="contractInput" type="text" placeholder="Enter contract address" style="width: 100%; padding: 10px; border-radius: 8px; margin-bottom: 10px; border: none;">
+    <button onclick="scanContract()" style="width: 100%; background: #00ffc6; color: black; padding: 10px; border: none; border-radius: 8px; font-weight: bold;">
+      🔍 Scan Contract
+    </button>
+
+    <div id="scanResult" style="margin-top: 15px; display: none;">
+      <p>✅ <b>Owner Control:</b> YES</p>
+      <p>🔄 <b>Can Mint Tokens:</b> YES</p>
+      <p>❄️ <b>Freeze Function Present:</b> NO</p>
+      <p>🚫 <b>Blacklist Capability:</b> NO</p>
+      <p>🛡️ <b>Audit Link:</b> <span style="color: orange;">No Audit Found</span></p>
+      <p>⚠️ <b>Risk Level:</b> <span style="color: red; font-weight: bold;">HIGH</span></p>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleScanner() {
+  const section = document.getElementById("scannerSection");
+  section.style.display = (section.style.display === "none") ? "block" : "none";
+}
+
+function scanContract() {
+  const input = document.getElementById("contractInput").value.trim();
+  if (input.length < 10) {
+    alert("Please enter a valid contract address.");
+    return;
+  }
+  document.getElementById("scanResult").style.display = "block";
+}
+</script>
+<details style="margin-top: 20px; background:#222; padding:10px; border-radius:10px; color:#fff;">
+  <summary style="font-size: 18px; font-weight: bold; cursor: pointer;">🏦 Exchange Rugpull Detector (Click to Expand)</summary>
+  <div style="margin-top: 10px;">
+    <input type="text" id="exchangeInput" placeholder="Enter exchange name..." style="padding: 8px; width: 90%; border-radius: 5px; margin-bottom: 10px;">
+    <button onclick="scanExchange()" style="padding: 8px 16px; background-color: #444; color: white; border: none; border-radius: 5px;">🔍 Check Exchange</button>
+    
+    <div id="exchangeResult" style="margin-top: 15px; display: none;">
+      <p>🔐 <b>Trust Score:</b> Low</p>
+      <p>🚩 <b>Scam Tokens Listed:</b> 17+</p>
+      <p>❗ <b>User Withdrawal Complaints:</b> High</p>
+      <p>🔍 <b>Listing Transparency:</b> <span style="color: orange;">Unknown</span></p>
+      <p>⚠️ <b>Risk Level:</b> <span style="color: red;">HIGH</span></p>
+    </div>
+  </div>
+</details>
+<!-- 🧠 Smart Contract Scanner (Collapsible Section) -->
+<div style="margin-top:30px;">
+  <button onclick="toggleScanner()" style="padding:10px;border-radius:8px;background:#1f6feb;color:white;border:none;">
+    🧠 Smart Contract Scanner
+  </button>
+  <div id="scannerSection" style="display:none;margin-top:20px;background:#161b22;padding:20px;border-radius:10px;">
+    <input type="text" id="contractInput" placeholder="Enter contract address..." style="width:100%;padding:10px;border-radius:5px;">
+    <button onclick="scanContract()" style="margin-top:10px;padding:10px 20px;border-radius:5px;background:#238636;color:white;border:none;">
+      🔍 Scan Contract
+    </button>
+    <div id="scanResult" style="margin-top:20px;display:none;"></div>
+  </div>
+</div>
+
+<script>
+function toggleScanner() {
+  const section = document.getElementById("scannerSection");
+  section.style.display = section.style.display === "none" ? "block" : "none";
+}
+
+function scanContract() {
+  let result = `
+    <p>✅ Owner control: <strong>YES</strong></p>
+    <p>🔄 Can Mint Tokens: <strong>YES</strong></p>
+    <p>❄️ Freeze Function Present: <strong>NO</strong></p>
+    <p>🚫 Blacklist Capability: <strong>NO</strong></p>
+    <p>🛡️ Audit Link: <strong>No Audit Found</strong></p>
+    <p>⚠️ Risk Level: <span style="color:red;"><strong>HIGH</strong></span></p>
+  `;
+  document.getElementById("scanResult").innerHTML = result;
+  document.getElementById("scanResult").style.display = "block";
+}
+</script>

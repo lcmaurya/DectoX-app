@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dectox.viewer">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
+        android:label="DectoX AI"
+        android:theme="@android:style/Theme.Black.NoTitleBar">
+        <activity android:name=".MainActivity"
+            android:exported="true"
+            android:label="DectoX">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

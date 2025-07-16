@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DectoX – AI Crypto Scanner</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      border-radius: 5px;
+    }
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+      color: #fff;
+    }
+    details {
+      background: #222;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🔍 DectoX – AI Crypto Scanner</h2>
+  <p>Start scanning crypto assets with AI.</p>
+
+  <!-- Smart Contract Scanner -->
+  <details>
+    <summary>🧠 Smart Contract Scanner (Click to Expand)</summary>
+    <input type="text" id="contractInput" placeholder="Enter contract address">
+    <button onclick="scanContract()">🔍 Scan Contract</button>
+    <div id="scanResult" style="display: none; margin-top: 10px;"></div>
+  </details>
+
+  <!-- Exchange Rugpull Detector (you will paste this below later) -->
+
+<script>
+function scanContract() {
+  let result = `
+    <p>✅ Owner control: <strong>YES</strong></p>
+    <p>🔄 Can Mint Tokens: <strong>YES</strong></p>
+    <p>❄️ Freeze Function Present: <strong>NO</strong></p>
+    <p>🚫 Blacklist Capability: <strong>NO</strong></p>
+    <p>🛡️ Audit Link: <strong>No Audit Found</strong></p>
+    <p>⚠️ Risk Level: <span style="color: red;"><strong>HIGH</strong></span></p>
+  `;
+  document.getElementById("scanResult").innerHTML = result;
+  document.getElementById("scanResult").style.display = "block";
+}
+</script>
+
+</body>
+</html>
+<!-- 🧠 AI Warning System -->
+<div style="margin-top: 30px;">
+  <button onclick="toggleSection('aiWarning')" style="width: 100%; padding: 10px; font-size: 16px; background: #222; color: #ff66ff; border: none; border-radius: 8px;">🔔 AI Warning System (Click to Expand)</button>
+  <div id="aiWarning" style="display: none; margin-top: 15px; background: #161b22; padding: 20px; border-radius: 10px;">
+    <p><strong>🧪 Detected:</strong></p>
+    <ul>
+      <li>📈 Sudden volume spike: <span style="color: #ffaa00;">YES</span></li>
+      <li>💰 Mass sell-offs: <span style="color: #ffaa00;">YES</span></li>
+      <li>📢 Community alerts: <span style="color: #ffaa00;">YES</span></li>
+    </ul>
+    <p><strong>⚠️ Action Suggested:</strong> <span style="color: #ff4444;">AVOID</span></p>
+    <p><em>(Dummy data for now, AI alerts will be real later)</em></p>
+  </div>
+</div>
+<!-- 🏦 Exchange Rugpull Detector -->
+<div style="margin-top: 30px;">
+  <button onclick="toggleSection('rugpullDetector')" style="background:#161b22;color:white;padding:10px 20px;border:none;border-radius:10px;cursor:pointer;">
+    🏦 Exchange Rugpull Detector (Click to Expand)
+  </button>
+  <div id="rugpullDetector" style="display: none; margin-top: 15px; background: #161b22; padding: 15px; border-radius: 10px;">
+    <input type="text" id="exchangeInput" placeholder="Enter exchange name..." style="width: 100%; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+    <button onclick="scanExchange()" style="background: #00ffc6; color: black; padding: 10px 20px; border: none; border-radius: 8px;">🔍 Scan Exchange</button>
+    <div id="exchangeResult" style="display: none; margin-top: 20px;">
+      <p>🔰 Trust Score: <strong>5.4 / 10</strong></p>
+      <p>🚨 Scam Tokens Listed: <strong>23+</strong></p>
+      <p>❌ Withdrawal Complaints: <strong>YES</strong></p>
+      <p>🔍 Listing Transparency: <strong>LOW</strong></p>
+      <p>⚠️ Risk Level: <span style="color: red;"><strong>HIGH</strong></span></p>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSection(id) {
+  let x = document.getElementById(id);
+  x.style.display = (x.style.display === "none") ? "block" : "none";
+}
+function scanExchange() {
+  document.getElementById("exchangeResult").style.display = "block";
+}
+</script>
+<!-- 🧠 Predictive AI – Scam Forecast -->
+<div style="margin-top: 30px;">
+  <button onclick="toggleSection('aiForecast')" style="padding: 10px; background-color: #222; color: white; border-radius: 8px;">🧠 Predictive AI – Scam Forecast (Click to Expand)</button>
+  <div id="aiForecast" style="display: none; margin-top: 20px;">
+    <p><strong>📊 AI Forecast Summary:</strong></p>
+    <ul>
+      <li>📉 Dump Probability: <span style="color: red;">HIGH</span></li>
+      <li>⚠️ Risk Trend: <span style="color: orange;">Increasing</span></li>
+      <li>🆕 New Token Watch: <span style="color: yellow;">5 new risky tokens detected</span></li>
+    </ul>
+    <p><strong>🧠 AI Advice:</strong> Avoid new listings this week, high volatility observed.</p>
+    <p><em>(Dummy data shown — live prediction to be added later)</em></p>
+  </div>
+</div>
+<!-- 🐳 Whale Tracker -->
+<div style="margin-top: 30px;">
+  <button onclick="toggleSection('whaleTracker')" style="padding: 10px; background-color: #222; color: white; border-radius: 8px;">🐳 Whale Tracker (Click to Expand)</button>
+  <div id="whaleTracker" style="display: none; margin-top: 20px;">
+    <p><strong>💼 Large Wallet Activity:</strong></p>
+    <ul>
+      <li>🚨 $250,000 transferred from Wallet X to Exchange A</li>
+      <li>🔄 Repeated $100,000+ movements across 3 tokens</li>
+      <li>📊 Wallet Z triggered alert across 2 exchanges</li>
+    </ul>
+    <p><strong>🧠 AI Note:</strong> High risk behavior detected. Monitor prices for volatility.</p>
+    <p><em>(Dummy data – Live wallet monitoring coming soon)</em></p>
+  </div>
+</div>
+<!-- 🌍 Live Global Dashboard -->
+<div style="margin-top: 30px;">
+  <button onclick="toggleSection('globalDashboard')" style="padding: 10px; background-color: #222; color: white; border-radius: 8px;">🌍 Live Global Dashboard (Click to Expand)</button>
+  <div id="globalDashboard" style="display: none; margin-top: 20px;">
+    <p><strong>🗺️ Scam Activity Zones:</strong></p>
+    <ul>
+      <li>🔴 Asia – 14 suspicious tokens detected</li>
+      <li>🟠 Europe – 7 active scam alerts</li>
+      <li>🟢 North America – Stable zone</li>
+    </ul>
+    <p><strong>📡 Whale Movement Radar:</strong></p>
+    <ul>
+      <li>🐳 Wallet #239 moved $500K into low-cap tokens</li>
+      <li>⚠️ Large outflow from Exchange B (2M USD)</li>
+    </ul>
+    <p><strong>🔥 Exchange Heat Index:</strong></p>
+    <ul>
+      <li>🔥 Exchange C – Sudden token delisting wave</li>
+      <li>🧊 Exchange F – No recent changes</li>
+    </ul>
+    <p><em>(Dummy data – Live integration coming in Phase 2)</em></p>
+  </div>
+</div>

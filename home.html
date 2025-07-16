@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DectoX – Crypto Risk Scanner</title>
+  <style>
+    body { background: #0d1117; color: white; font-family: sans-serif; padding: 20px; }
+    input { width: 100%; padding: 10px; border-radius: 10px; margin-bottom: 20px; }
+    .coin { background: #161b22; padding: 15px; margin-bottom: 15px; border-radius: 10px; }
+    .low { color: #00ff88; } .medium { color: #ffaa00; } .high { color: #ff4444; }
+    details { margin-top: 30px; background: #1e252f; padding: 20px; border-radius: 10px; }
+    .btn { padding: 10px 20px; background: #00ffc6; color: black; border: none; border-radius: 8px; cursor: pointer; }
+    .output-box { background: #12161c; padding: 10px; border-radius: 8px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<h2>🔍 DectoX – AI Crypto Scanner</h2>
+
+<input type="text" id="searchInput" onkeyup="filterCoins()" placeholder="Search crypto by name or symbol...">
+
+<div id="coinList">
+  {% for coin in coins %}
+  <div class="coin" data-name="{{ coin.name }}" data-symbol="{{ coin.symbol }}">
+    <h3>{{ coin.name }} ({{ coin.symbol }})</h3>
+    <p>Risk Level: <span class="{{ coin.risk_level|lower }}">{{ coin.risk_level }}</span> ({{ coin.risk }}%)</p>
+    <p>Price: {{ coin.price }}</p>
+    <p>Score: ⭐ {{ coin.score }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<details>
+  <summary><b>🧠 Smart Contract Scanner (Click to Expand)</b></summary>
+  <br>
+  <label>Enter Contract Address:</label>
+  <input type="text" id="contractInput" placeholder="e.g., 0x123...">
+  <button class="btn" onclick="scanContract()">🔍 Scan Contract</button>
+  
+  <div class="output-box" id="scanResult" style="display: none;">
+    <p>✅ Owner Control: <b>YES</b></p>
+    <p>🔄 Can Mint Tokens: <b>YES</b></p>
+    <p>❄️ Freeze Function Present: <b>NO</b></p>
+    <p>🚫 Blacklist Capability: <b>NO</b></p>
+    <p>🛡️ Audit Link: <b>No Audit Found</b></p>
+    <p>⚠️ Risk Level: <span style="color: red;"><b>HIGH</b></span></p>
+  </div>
+</details>
+
+<script>
+function filterCoins() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let coins = document.getElementsByClassName("coin");
+  for (let i = 0; i < coins.length; i++) {
+    let name = coins[i].getAttribute("data-name").toLowerCase();
+    let symbol = coins[i].getAttribute("data-symbol").toLowerCase();
+    coins[i].style.display = (name.includes(input) || symbol.includes(input)) ? "block" : "none";
+  }
+}
+
+function scanContract() {
+  document.getElementById("scanResult").style.display = "block";
+}
+</script>
+
+</body>
+</html>
